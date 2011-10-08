@@ -1,0 +1,3 @@
+[branch "develop"]
+	remote = origin
+	merge = refs/heads/develop
