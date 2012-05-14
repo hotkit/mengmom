@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+cd `dirname $0`
+svn up .
+
+if [ ! -e fost-web ]
+then
+    git clone git@github.com:Felspar/fost-web.git
+    cd fost-web
+    git flow init -d
+    git pull origin develop
+    cd ..
+else
+    cd fost-web
+    git pull origin develop
+    cd ..
+fi
