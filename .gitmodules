@@ -1,0 +1,3 @@
+[submodule "fost-web"]
+	path = fost-web
+	url = git@github.com:KayEss/fost-web.git
