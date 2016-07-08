@@ -22,3 +22,6 @@
 [submodule "threading"]
 	path = threading
 	url = git@github.com:KayEss/f5-threading.git
+[submodule "fostgres"]
+	path = fostgres
+	url = git@github.com:KayEss/fostgres.git
