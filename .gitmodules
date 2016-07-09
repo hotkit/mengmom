@@ -31,3 +31,6 @@
 [submodule "fost-postgres"]
 	path = fost-postgres
 	url = git@github.com:KayEss/fost-postgres.git
+[submodule "odin"]
+	path = odin
+	url = git@github.com:KayEss/odin.git
