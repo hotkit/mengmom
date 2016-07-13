@@ -33,6 +33,11 @@ alias fostgres :
     ;
 explicit fostgres ;
 
+alias odin :
+        ../odin//odin
+    ;
+explicit odin ;
+
 alias all :
         ../fost-base//all
         ../fost-internet//all
@@ -40,5 +45,6 @@ alias all :
         ../fost-web//all
         fost
         fostgres
+        odin
     ;
 explicit all ;
