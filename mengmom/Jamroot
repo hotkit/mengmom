@@ -11,6 +11,7 @@ use-project fost-internet : ../fost-internet ;
 use-project fost-orm : ../fost-orm ;
 use-project fost-web : ../fost-web ;
 use-project fostgres : ../fostgres ;
+use-project odin : ../odin ;
 
 #Define this project
 fost-project mengmom
