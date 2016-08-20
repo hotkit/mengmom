@@ -18,7 +18,7 @@ fi
 
 if ../bjam -j$CPUCOUNT $TOOLSET $VARIANTS
 then {
-    echo fost-web $VARIANTS OK
+    echo mengmom $VARIANTS OK
     exit 0
 } else {
     exit 1
