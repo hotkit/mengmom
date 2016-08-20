@@ -34,3 +34,6 @@
 [submodule "odin"]
 	path = odin
 	url = git@github.com:KayEss/odin.git
+[submodule "fost-beanbag"]
+	path = fost-beanbag
+	url = git@github.com:KayEss/fost-beanbag.git
