@@ -34,6 +34,7 @@ alias beanbag :
         ../fost-beanbag//fost
     ;
 explicit beanbag ;
+
 alias fostgres :
         ../fostgres//fostgres
     ;
@@ -44,6 +45,15 @@ alias odin :
     ;
 explicit odin ;
 
+alias test :
+        ../fost-base//tests
+        ../fost-beanbag//test
+        ../fost-internet//tests
+        ../fost-orm//tests
+        ../fostgres//test
+    ;
+explicit test ;
+
 alias all :
         ../fost-base//all
         ../fost-internet//all
@@ -53,5 +63,6 @@ alias all :
         fost
         fostgres
         odin
+        test
     ;
 explicit all ;
