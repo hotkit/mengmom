@@ -7,6 +7,7 @@ include ../fost-base/fost.jam ;
 
 # Bring in the projects used
 use-project fost-base : ../fost-base ;
+use-project fost-beanbag : ../fost-beanbag ;
 use-project fost-internet : ../fost-internet ;
 use-project fost-orm : ../fost-orm ;
 use-project fost-web : ../fost-web ;
@@ -29,6 +30,10 @@ alias fost :
         ../fost-web//fost
     ;
 
+alias beanbag :
+        ../fost-beanbag//fost
+    ;
+explicit beanbag ;
 alias fostgres :
         ../fostgres//fostgres
     ;
@@ -44,6 +49,7 @@ alias all :
         ../fost-internet//all
         ../fost-orm//all
         ../fost-web//all
+        beanbag
         fost
         fostgres
         odin
