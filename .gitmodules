@@ -22,3 +22,18 @@
 [submodule "threading"]
 	path = threading
 	url = git@github.com:KayEss/f5-threading.git
+[submodule "fostgres"]
+	path = fostgres
+	url = git@github.com:KayEss/fostgres.git
+[submodule "PostgreSQL"]
+	path = PostgreSQL
+	url = git@github.com:KayEss/fost-libpq.git
+[submodule "fost-postgres"]
+	path = fost-postgres
+	url = git@github.com:KayEss/fost-postgres.git
+[submodule "odin"]
+	path = odin
+	url = git@github.com:KayEss/odin.git
+[submodule "fost-beanbag"]
+	path = fost-beanbag
+	url = git@github.com:KayEss/fost-beanbag.git
