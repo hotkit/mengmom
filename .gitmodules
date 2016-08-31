@@ -37,3 +37,6 @@
 [submodule "fost-beanbag"]
 	path = fost-beanbag
 	url = git@github.com:KayEss/fost-beanbag.git
+[submodule "cord"]
+	path = cord
+	url = git@github.com:KayEss/f5-cord.git
