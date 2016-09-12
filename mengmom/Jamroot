@@ -51,6 +51,7 @@ alias test :
         ../fost-internet//tests
         ../fost-orm//tests
         ../fostgres//test
+        ../odin//test
     ;
 explicit test ;
 
