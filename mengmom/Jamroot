@@ -50,6 +50,7 @@ alias test :
         ../fost-beanbag//test
         ../fost-internet//tests
         ../fost-orm//tests
+        ../fost-postgres//tests
         ../fostgres//test
         ../odin//test
     ;
@@ -59,6 +60,7 @@ alias all :
         ../fost-base//all
         ../fost-internet//all
         ../fost-orm//all
+        ../fost-postgres//all
         ../fost-web//all
         beanbag
         fost
