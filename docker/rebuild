@@ -14,4 +14,25 @@ for RELEASE in precise trusty wily xenial; do
     for IMAGE in fost-runtime fost-builder; do
         sudo docker pull kayess/$IMAGE:$RELEASE
     done
+
+    # Get our Boost stuff in line
+    rm -rf ../dist-docker
+    mkdir -p ../tmp/$RELEASE
+    if test -e ../tmp/$RELEASE/Boost
+    then {
+        pushd ../tmp/$RELEASE/Boost
+        git pull origin master
+    } else {
+        git clone git@github.com:KayEss/fost-boost.git ../tmp/$RELEASE/Boost
+        pushd ../tmp/$RELEASE/Boost
+        ln ../../../../Boost/1_64_0.tar.bz2
+        tar xf 1_64_0.tar.bz2
+        mv boost_1_64_0 1_64_0
+    }
+    fi
+    git submodule init
+    git submodule sync --recursive
+    git submodule update --init --recursive
+    popd
+
 done
