@@ -9,7 +9,7 @@ function dockerize {
     sudo docker push kayess/$1:$2
 }
 
-for RELEASE in precise trusty wily xenial; do
+for RELEASE in trusty xenial yakkety zesty; do
     # Make sure we have the latest source image
     for IMAGE in fost-runtime fost-builder; do
         sudo docker pull kayess/$IMAGE:$RELEASE
@@ -34,5 +34,14 @@ for RELEASE in precise trusty wily xenial; do
     git submodule sync --recursive
     git submodule update --init --recursive
     popd
+
+    # Compile the code
+    sudo docker run -u $(id -u):$(id -g) -it --rm=true \
+        -v $(pwd)/..:/src \
+        -v $(pwd)/../tmp/$RELEASE/Boost:/src/Boost/ \
+        kayess/fost-builder:$RELEASE \
+            bash -c -- "Boost/build 64 0 && Boost/install 64 0 && \
+                PREFIX=/src/dist-docker docker/compile toolset=gcc release"
+    strip ../dist-docker/bin/* ../dist-docker/lib/*
 
 done
