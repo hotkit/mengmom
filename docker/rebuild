@@ -16,7 +16,6 @@ for RELEASE in trusty xenial yakkety zesty; do
     done
 
     # Get our Boost stuff in line
-    rm -rf ../dist-docker
     mkdir -p ../tmp/$RELEASE
     if test -e ../tmp/$RELEASE/Boost
     then {
@@ -36,12 +35,15 @@ for RELEASE in trusty xenial yakkety zesty; do
     popd
 
     # Compile the code
-    sudo docker run -u $(id -u):$(id -g) -it --rm=true \
+    mkdir -p ../tmp/$RELEASE/{build.tmp,dist}
+    sudo docker run -u $(id -u):$(id -g)  \
         -v $(pwd)/..:/src \
         -v $(pwd)/../tmp/$RELEASE/Boost:/src/Boost/ \
-        kayess/fost-builder:$RELEASE \
-            bash -c -- "Boost/build 64 0 && Boost/install 64 0 && \
-                PREFIX=/src/dist-docker docker/compile toolset=gcc release"
-    strip ../dist-docker/bin/* ../dist-docker/lib/*
+        -v $(pwd)/../tmp/$RELEASE/build.tmp:/src/build.tmp \
+        -v $(pwd)/../tmp/$RELEASE/dist:/src/dist \
+        -it --rm=true kayess/fost-builder:$RELEASE \
+            bash -c -- "Boost/build 62 0 && Boost/install 62 0 && \
+                docker/compile toolset=gcc release"
+    strip ../tmp/$RELEASE/dist/{bin,lib}/*
 
 done
