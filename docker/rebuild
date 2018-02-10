@@ -24,9 +24,7 @@ for RELEASE in trusty xenial yakkety zesty artful; do
     } else {
         git clone git@github.com:KayEss/fost-boost.git ../tmp/$RELEASE/Boost
         pushd ../tmp/$RELEASE/Boost
-        ln ../../../../Boost/1_62_0.tar.bz2
-        tar xf 1_62_0.tar.bz2
-        mv boost_1_62_0 1_62_0
+        ln ../../../../Boost/1_64_0.tar.bz2
     }
     fi
     git submodule init
@@ -42,7 +40,7 @@ for RELEASE in trusty xenial yakkety zesty artful; do
         -v $(pwd)/../tmp/$RELEASE/build.tmp:/src/build.tmp \
         -v $(pwd)/../tmp/$RELEASE/dist:/src/dist \
         -it --rm=true kayess/fost-builder:$RELEASE \
-            bash -c -- "Boost/build 62 0 && Boost/install 62 0 && \
+            bash -c -- "Boost/build 64 0 && Boost/install 64 0 && \
                 docker/compile toolset=gcc release"
     strip ../tmp/$RELEASE/dist/{bin,lib}/*
 
