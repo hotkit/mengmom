@@ -41,7 +41,7 @@ for RELEASE in trusty xenial yakkety zesty artful; do
         -v $(pwd)/../tmp/$RELEASE/dist:/src/dist \
         -it --rm=true kayess/fost-builder:$RELEASE \
             bash -c -- "Boost/build 64 0 && Boost/install 64 0 && \
-                docker/compile toolset=gcc release"
+                mengmom/compile toolset=gcc release"
     strip ../tmp/$RELEASE/dist/{bin,lib}/*
 
 done
