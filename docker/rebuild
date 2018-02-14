@@ -3,12 +3,6 @@ cd $(dirname $0)
 
 set -ex
 
-function dockerize {
-    sed -i s/:latest/:$2/ ../dist-docker/${3}Dockerfile
-    sudo docker build -t kayess/$1:$2 ../dist-docker/$3
-#     sudo docker push kayess/$1:$2
-}
-
 for RELEASE in trusty xenial yakkety zesty artful; do
     # Make sure we have the latest source image
     for IMAGE in fost-runtime fost-builder; do
@@ -43,5 +37,8 @@ for RELEASE in trusty xenial yakkety zesty artful; do
             bash -c -- "Boost/build 64 0 && Boost/install 64 0 && \
                 mengmom/compile toolset=gcc release fostgres odin"
     strip ../tmp/$RELEASE/dist/{bin,lib}/*
-
+    cp Dockerfile ../tmp/$RELEASE/dist/
+    sed -i s/:latest/:${RELEASE}/ ../tmp/$RELEASE/dist/Dockerfile
+    sudo docker build -t kayess/mengmom:$RELEASE ../tmp/$RELEASE/dist/
+    sudo docker push kayess/mengmom:$RELEASE
 done
