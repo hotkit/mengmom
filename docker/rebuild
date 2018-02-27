@@ -42,3 +42,10 @@ for RELEASE in trusty xenial artful; do
     sudo docker build -t kayess/mengmom:$RELEASE ../tmp/$RELEASE/dist/
     sudo docker push kayess/mengmom:$RELEASE
 done
+
+sudo docker tag kayess/mengmom:$RELEASE kayess/mengmom:latest
+sudo docker push kayess/mengmom:latest
+
+VERSION=$(git describe --dirty)
+sudo docker tag kayess/mengmom:$RELEASE kayess/fostgres:$VERSION
+sudo docker push kayess/fostgres:$VERSION
