@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+cd $(dirname $0)
+
+set -ex
+
+for RELEASE in trusty xenial artful; do
+    # Make sure we have the latest source image
+    for IMAGE in fost-runtime fost-builder; do
+        sudo docker pull kayess/$IMAGE:$RELEASE
+    done
+
+    # Get our Boost stuff in line
+    mkdir -p ../tmp/$RELEASE
+    if test -e ../tmp/$RELEASE/Boost
+    then {
+        pushd ../tmp/$RELEASE/Boost
+        git pull origin master
+    } else {
+        git clone git@github.com:KayEss/fost-boost.git ../tmp/$RELEASE/Boost
+        pushd ../tmp/$RELEASE/Boost
+        ln ../../../../Boost/1_64_0.tar.bz2
+    }
+    fi
+    git submodule init
+    git submodule sync --recursive
+    git submodule update --init --recursive
+    popd
+
+    # Compile the code
+    mkdir -p ../tmp/$RELEASE/{build.tmp,dist}
+    sudo docker run -u $(id -u):$(id -g)  \
+        -v $(pwd)/..:/src \
+        -v $(pwd)/../tmp/$RELEASE/Boost:/src/Boost/ \
+        -v $(pwd)/../tmp/$RELEASE/build.tmp:/src/build.tmp \
+        -v $(pwd)/../tmp/$RELEASE/dist:/src/dist \
+        -it --rm=true kayess/fost-builder:$RELEASE \
+            bash -c -- "Boost/build 64 0 && Boost/install 64 0 && \
+                mengmom/compile toolset=gcc release fostgres odin"
+    strip ../tmp/$RELEASE/dist/{bin,lib}/*
+    cp Dockerfile ../tmp/$RELEASE/dist/
+    sed -i s/:latest/:${RELEASE}/ ../tmp/$RELEASE/dist/Dockerfile
+    sudo docker build -t kayess/mengmom:$RELEASE ../tmp/$RELEASE/dist/
+    sudo docker push kayess/mengmom:$RELEASE
+done
+
+sudo docker tag kayess/mengmom:$RELEASE kayess/mengmom:latest
+sudo docker push kayess/mengmom:latest
+
+VERSION=$(git describe --dirty)
+sudo docker tag kayess/mengmom:$RELEASE kayess/fostgres:$VERSION
+sudo docker push kayess/fostgres:$VERSION
