@@ -34,7 +34,7 @@ for RELEASE in trusty xenial artful; do
         -v $(pwd)/../tmp/$RELEASE/build.tmp:/src/build.tmp \
         -v $(pwd)/../tmp/$RELEASE/dist:/src/dist \
         -it --rm=true kayess/fost-builder:$RELEASE \
-            bash -c -- "Boost/build 64 0 && Boost/install 64 0 && \
+            bash -c -- "Boost/build 64 0 && Boost/install 64 0 && PostgreSQL/configure && \
                 mengmom/compile toolset=gcc release fostgres odin"
     strip ../tmp/$RELEASE/dist/{bin,lib}/*
     cp Dockerfile ../tmp/$RELEASE/dist/
