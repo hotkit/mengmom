@@ -3,7 +3,7 @@ cd $(dirname $0)
 
 set -ex
 
-for RELEASE in trusty xenial artful; do
+for RELEASE in xenial artful bionic; do
     # Make sure we have the latest source image
     for IMAGE in fost-runtime fost-builder; do
         sudo docker pull kayess/$IMAGE:$RELEASE
