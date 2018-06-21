@@ -3,7 +3,7 @@ cd $(dirname $0)
 
 set -ex
 
-for RELEASE in trusty xenial artful; do
+for RELEASE in xenial artful bionic; do
     # Make sure we have the latest source image
     for IMAGE in fost-runtime fost-builder; do
         sudo docker pull kayess/$IMAGE:$RELEASE
@@ -34,7 +34,7 @@ for RELEASE in trusty xenial artful; do
         -v $(pwd)/../tmp/$RELEASE/build.tmp:/src/build.tmp \
         -v $(pwd)/../tmp/$RELEASE/dist:/src/dist \
         -it --rm=true kayess/fost-builder:$RELEASE \
-            bash -c -- "Boost/build 64 0 && Boost/install 64 0 && \
+            bash -c -- "Boost/build 64 0 && Boost/install 64 0 && PostgreSQL/configure && \
                 mengmom/compile toolset=gcc release fostgres odin"
     strip ../tmp/$RELEASE/dist/{bin,lib}/*
     cp Dockerfile ../tmp/$RELEASE/dist/
@@ -49,3 +49,11 @@ sudo docker push kayess/mengmom:latest
 VERSION=$(git describe --dirty)
 sudo docker tag kayess/mengmom:$RELEASE kayess/fostgres:$VERSION
 sudo docker push kayess/fostgres:$VERSION
+
+if git branch | grep "* master" > /dev/null
+then {
+    sudo docker tag kayess/fostgres:$VERSION kayess/fostgres:latest
+    sudo docker push kayess/fostgres:latest
+}
+fi
+
