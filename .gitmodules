@@ -34,3 +34,6 @@
 [submodule "cord"]
 	path = cord
 	url = git@github.com:KayEss/f5-cord.git
+[submodule "json-schema"]
+	path = json-schema
+	url = git@github.com:KayEss/json-schema.git
