@@ -3,7 +3,9 @@ sudo: required
 dist: xenial
 
 git:
-  submodules: false
+    submodules: false
+services:
+    - postgresql
 
 compiler:
     - gcc
@@ -14,8 +16,8 @@ env:
     - CMAKE_BUILD_TYPE=Release
 
 cache:
-  directories:
-    boost-cache
+    directories:
+        boost-cache
 
 before_install:
     - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
@@ -27,7 +29,7 @@ before_install:
 install:
     - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
     - sudo apt-get update -qq
-    - sudo apt-get install -qq -y ninja-build g++-8
+    - sudo apt-get install -qq -y ninja-build g++-8 libpq-dev postgresql-server-dev-all
 
 script:
     - mkdir build.tmp && cd build.tmp
