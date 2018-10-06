@@ -22,9 +22,6 @@ cache:
 before_install:
     - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
     - git submodule update --init
-    - sed -i 's/git@github.com:/https:\/\/github.com\//' PostgreSQL/.gitmodules
-    - git submodule update --init --recursive
-    - PostgreSQL/configure
     - ln -s ../boost-cache Boost/boost
 
 install:
