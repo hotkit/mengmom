@@ -15,7 +15,7 @@
 	url = git@github.com:hotkit/fost-internet.git
 [submodule "threading"]
 	path = threading
-	url = git@github.com:hotkit/f5-threading.git
+	url = git@github.com:hotkit/threading.git
 [submodule "fostgres"]
 	path = fostgres
 	url = git@github.com:hotkit/fostgres.git
@@ -30,7 +30,7 @@
 	url = git@github.com:hotkit/fost-beanbag.git
 [submodule "cord"]
 	path = cord
-	url = git@github.com:hotkit/f5-cord.git
+	url = git@github.com:hotkit/cord.git
 [submodule "json-schema"]
 	path = json-schema
 	url = git@github.com:hotkit/json-schema.git
