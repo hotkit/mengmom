@@ -1,39 +1,39 @@
 [submodule "fost-web"]
 	path = fost-web
-	url = git@github.com:KayEss/fost-web.git
+	url = git@github.com:hotkit/fost-web.git
 [submodule "Boost"]
 	path = Boost
-	url = git@github.com:KayEss/fost-boost.git
+	url = git@github.com:hotkit/fost-boost.git
 [submodule "fost-base"]
 	path = fost-base
-	url = git@github.com:KayEss/fost-base.git
+	url = git@github.com:hotkit/fost-base.git
 [submodule "crypto++"]
 	path = crypto++
-	url = git@github.com:KayEss/fost-crypto.git
+	url = git@github.com:hotkit/fost-crypto.git
 [submodule "fost-internet"]
 	path = fost-internet
-	url = git@github.com:KayEss/fost-internet.git
+	url = git@github.com:hotkit/fost-internet.git
 [submodule "threading"]
 	path = threading
-	url = git@github.com:KayEss/f5-threading.git
+	url = git@github.com:hotkit/f5-threading.git
 [submodule "fostgres"]
 	path = fostgres
-	url = git@github.com:KayEss/fostgres.git
+	url = git@github.com:hotkit/fostgres.git
 [submodule "fost-postgres"]
 	path = fost-postgres
-	url = git@github.com:KayEss/fost-postgres.git
+	url = git@github.com:hotkit/fost-postgres.git
 [submodule "odin"]
 	path = odin
-	url = git@github.com:KayEss/odin.git
+	url = git@github.com:hotkit/odin.git
 [submodule "fost-beanbag"]
 	path = fost-beanbag
-	url = git@github.com:KayEss/fost-beanbag.git
+	url = git@github.com:hotkit/fost-beanbag.git
 [submodule "cord"]
 	path = cord
-	url = git@github.com:KayEss/f5-cord.git
+	url = git@github.com:hotkit/f5-cord.git
 [submodule "json-schema"]
 	path = json-schema
-	url = git@github.com:KayEss/json-schema.git
+	url = git@github.com:hotkit/json-schema.git
 [submodule "libpqxx"]
 	path = libpqxx
 	url = git@github.com:jtv/libpqxx.git
