@@ -1,11 +1,8 @@
 language: cpp
-sudo: required
-dist: xenial
+dist: focal
 
 git:
     submodules: false
-services:
-    - postgresql
 
 compiler:
     - gcc
@@ -27,10 +24,11 @@ before_install:
 install:
     - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
     - sudo apt-get update -qq
-    - sudo apt-get install -qq -y ninja-build g++-8 libpq-dev postgresql-server-dev-all
+    - sudo apt-get install -qq -y ninja-build g++-10 clang-10 libpq-dev postgresql-server-dev-all
 
 script:
     - mkdir build.tmp && cd build.tmp
-    - 'if [ "$CXX" = "g++" ]; then export CC=gcc-8; export CXX=g++-8; fi'
+    - 'if [ "$CXX" = "g++" ]; then export CC=gcc-10; export CXX=g++-10; fi'
+    - 'if [ "$CXX" = "clang++" ]; then export CC=clang-10; export CXX=clang++-10; fi'
     - cmake .. -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -G Ninja -DSKIP_BUILD_TEST=ON
     - ninja
