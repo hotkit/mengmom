@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.6)
+project(mengmom)
 
 # These contain targets and functions needed elsewhere
 add_subdirectory(cord)
