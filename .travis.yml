@@ -24,7 +24,7 @@ before_install:
 install:
     - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
     - sudo apt-get update -qq
-    - sudo apt-get install -qq -y ninja-build g++-10 clang-10 libpq-dev postgresql-server-dev-all
+    - sudo apt-get install -qq -y cmake ninja-build g++-10 clang-10 libpq-dev postgresql-server-dev-all
 
 script:
     - mkdir build.tmp && cd build.tmp
