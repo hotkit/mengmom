@@ -3,13 +3,13 @@ version: 2.1
 executors:
   clang:
     docker:
-    - image: ubuntu:focal
+    - image: fost/circleci
     environment:
       CC: clang
       CXX: clang++
   gcc:
     docker:
-    - image: ubuntu:focal
+    - image: fost/circleci
     environment:
       CC: gcc-10
       CXX: g++-10
@@ -25,15 +25,6 @@ jobs:
     executor: << parameters.compiler >>
     steps:
       - checkout
-      - run:
-          name: install
-          environment:
-            DEBIAN_FRONTEND: noninteractive
-          command: |
-            apt-get update
-            apt-get install -y git build-essential cmake gcc-10 g++-10 clang libssl-dev ninja-build libboost-all-dev libpq-dev postgresql-server-dev-all
-            ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
-            dpkg-reconfigure --frontend noninteractive tzdata
       - run:
           name: submodules
           command: |
